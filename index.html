@@ -179,6 +179,15 @@
 				<section>
 					<section data-markdown>## Estimote beacons</section>
 					
+					<section>
+						<iframe width="853" height="480" src="https://www.youtube.com/embed/SrsHBjzt2E8?rel=0" frameborder="0" allowfullscreen></iframe>
+					</section>
+
+					<section data-markdown>
+						## Your phone is always with you,
+						## smart beacons give it CONTEXT.
+					</section>
+
 					<section data-markdown><script type="text/template">
 						<!-- .slide: data-background="white"-->
 						## Range <!-- .element: style="color:black"-->
@@ -196,7 +205,7 @@
 						
 						* proximityUUID (16 bytes) 
 						* major number (2 bytes)
-						* minor number (2 bytes).
+						* minor number (2 bytes)
 						
 					</script></section>
 
@@ -206,9 +215,14 @@
 						![white-bg](img/estimote-cloud.png)
 
 					</script></section>
-
+				</section>
+				<section>
 					<section data-markdown>
 						## Let's run sample Estimote app...
+					</section>
+
+					<section>
+						<img src="img/sample-1.png" style="height:90vh" />
 					</section>
 
 					<section data-markdown>
@@ -216,14 +230,59 @@
 
 					Apps can subscribe in the operating system to constantly listen for particular identifiers. 
 					When the phone comes into the range of a beacon, the app is notified about this, even if the phone is locked or the app is not currently running.
+
+					Try out ** Notify ** demo. 
 					</section>
 
 					<section data-markdown>
 					## Use 2: approx. distance to beacon
 
 					 The smartphone is continuously monitoring the strength of the signal (or RSSI), which is compared to three predefined ranges that divide the area around a beacon into three zones - far, near and immediate.
+
+					 Try out ** Distance ** and ** Proximity ** demo.
 					</section>
 
+					<section>
+						<img src="img/sample-2.png" style="height:90vh" />
+					</section>
+
+					<section>
+						<img src="img/estimote-proximity.png" />
+					</section>
+
+					<section data-markdown>
+					## Beacon configuration
+
+					You can modify some of the beacons' parameters:
+
+					* identifiers (UUID, major and minor)
+					* broadcasting power
+					* advertising interval
+					</section>
+
+					<section>
+						<img src="img/sample-3.png" style="height:90vh" />
+					</section>
+
+					<section>
+						<img src="img/sample-5.png" style="height:90vh" />
+						<img src="img/sample-6.png" style="height:90vh" />
+					</section>
+
+				</section>
+				<section>
+					<section data-markdown>
+						## Coding: hot and cold game
+					</section>
+					<section data-markdown>
+						## Rules
+
+						* Divide into teams of three
+						* You can code on one computer
+						* We're writing this one together – step by step
+						* Shout if you can't catch up – we'll help
+						* Don't upload app onto device until we say so
+					</section>
 				</section>
 			</div>
 		<script src="lib/js/head.min.js"></script>
