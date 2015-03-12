@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/HotandCold.iml" filepath="$PROJECT_DIR$/HotandCold.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eestec-beacon-workshops.iml" filepath="$PROJECT_DIR$/eestec-beacon-workshops.iml" />
     </modules>
   </component>
 </project>
