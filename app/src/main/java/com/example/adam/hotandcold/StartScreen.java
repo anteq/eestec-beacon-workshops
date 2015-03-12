@@ -4,11 +4,14 @@ import com.example.adam.hotandcold.util.SystemUiHider;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 
 /**
@@ -157,4 +160,12 @@ public class StartScreen extends Activity {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
+
+    public void startGame(){
+        Context context = getApplicationContext();
+        Intent startGameIntent = new Intent(this,GameActivity.class);
+
+        startActivity(startGameIntent);
+    }
+
 }
