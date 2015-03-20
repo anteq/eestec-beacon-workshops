@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <string name="app_name">Hot and Cold</string>
-    <string name="dummy_button">Start game</string>
-    <string name="dummy_content">Hot\nand\nCold</string>
-
-</resources>
