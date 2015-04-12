@@ -17,13 +17,35 @@
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/moon.css" id="theme">
 
-		<!-- Code syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link href="css/prism.css" rel="stylesheet" />
 
 		<style>
-		img[alt="thing"] {
-			max-width:120px;
-		}
+
+			img[alt="thing"] {
+				max-width:120px;
+			}
+
+			img.screen{
+				height:70vh;
+			}
+			
+			img[alt="coke"]{
+				float:right;
+				margin-left: 100px !important;
+			}
+
+			img[alt="white-bg"] {
+				border: none;
+			}
+
+			code {
+				font-size:16px !important;
+			}
+
+			code * {
+				line-height:50% !important;
+			}
+
 		</style>
 
 		<!-- Printing and PDF exports -->
@@ -41,63 +63,91 @@
 	</head>
 
 	<body>
+		<script src="js/prism.js"></script>
 
+		<!-- PRESENTATION -->
 		<div class="reveal">
 
-			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-				
-				<section data-markdown>
-					## Internet of Things
-					EESTEC and Telephoners workshop
-				</section>
 
-				<section data-markdown><script type="data/template">
-					## Workshop plan 
-					* 4 days x 4 hours <!-- .element: class="fragment" -->
-					* Small amount of theory... <!-- .element: class="fragment" -->
-					* ... and much more practice <!-- .element: class="fragment" -->
-					* Help yourself with coffee or tea <!-- .element: class="fragment" -->
-					* Do not hesitate to ask questions <!-- .element: class="fragment" -->
-					* Our English is not perfect - sorry about that :) <!-- .element: class="fragment" -->
-				</script></section>
-
-				<section data-markdown>
-					** You can follow the presentation on **
-					[http://anteq.github.io/eestec-beacon-workshops](http://anteq.github.io/eestec-beacon-workshops)
-				</section>
-
-				<section data-markdown><script type="data/template">
-					## Aims
-					We hope, that after this workshop you:
-
-					* will understand what Internet of Things is about <!-- .element: class="fragment" -->
-					* will be amazed how easy and powerful beacons are <!-- .element: class="fragment" -->
-					* will extend your programming skills <!-- .element: class="fragment" -->
-					* will get to know Estimote API <!-- .element: class="fragment" -->
-					* will have fun! :) <!-- .element: class="fragment" -->
-				</script></section> 
-
-				<section data-markdown>
-					## Four-day agenda
-					* Introduction to Internet of Things
-					* Beacons - why they are awesome!
-					* Example 0 - get to know Estimote API
-					* Example 1 - "hot and cold" game
-					* Build your own app!
-				</section>
-
+				<!-- WELCOME -->
 				<section>
+
+					<!-- Title -->
+					<section data-markdown>
+						## Internet of Things
+						EESTEC and Telephoners workshop
+					</section>
+
+					<!-- Workshop plan -->
+					<section data-markdown><script type="data/template">
+						## Workshop plan 
+						* 4 days x 4 hours <!-- .element: class="fragment" -->
+						* Small amount of theory... <!-- .element: class="fragment" -->
+						* ... and much more practice <!-- .element: class="fragment" -->
+						* Help yourself with coffee or tea <!-- .element: class="fragment" -->
+						* Do not hesitate to ask questions <!-- .element: class="fragment" -->
+						* Our English is not perfect - sorry about that :) <!-- .element: class="fragment" -->
+					</script></section>
+
+					<!-- Link to presentation -->
+					<section data-markdown>
+						** You can follow the presentation on **
+						[http://anteq.github.io/eestec-beacon-workshops](http://anteq.github.io/eestec-beacon-workshops)
+					</section>
+
+					<!-- Aims -->
+					<section data-markdown><script type="data/template">
+						## Aims
+						We hope, that after this workshop you:
+
+						* will understand what Internet of Things is about <!-- .element: class="fragment" -->
+						* will be amazed how easy and powerful beacons are <!-- .element: class="fragment" -->
+						* will extend your programming skills <!-- .element: class="fragment" -->
+						* will get to know Estimote SDK <!-- .element: class="fragment" -->
+						* will have fun! :) <!-- .element: class="fragment" -->
+					</script></section>
+
+					<!-- About us -->
+					<section>
+						<h2>About us</h2>
+						<li class="fragment">Adam</li>
+						<li class="fragment">Antek</li>
+						<li class="fragment">Eryk</li>
+						<li class="fragment">Wojtek</li>
+					</section> 
+
+					<!-- Four day agenda -->
+					<section data-markdown><script type="data/template">
+						## Four-day agenda
+
+						* Introduction to Internet of Things <!-- .element: class="fragment" -->
+						* Beacons - why they are awesome! <!-- .element: class="fragment" -->
+						* Get to know Estimote API <!-- .element: class="fragment" -->
+						* Coding 101: "hot and cold" game <!-- .element: class="fragment" -->
+						* Build your own app! <!-- .element: class="fragment" -->
+					</script></section>
+				</section>
+
+				<!-- INTRO TO IOT -->
+				<section>
+
+					<!-- Title -->
 					<section data-markdown>
 						## Introduction to Internet of Things
 					</section>
-					<section id="fragments">
+
+					<!-- IoT definition -->
+					<section>
 						<h3>Internet of Things ...</h3>
 						<p class="fragment">... is a network of interconnected <em>things</em> ...</p>
 						<p class="fragment">... embedded with electronics and sensors ...</p>
 						<p class="fragment">... which enables them to achieve greater value and service ...</p>
 						<p class="fragment">... by exchanging and analysing data.</p>
 					</section>
+
+
+					<!-- Examples -->
 					<section data-markdown>
 						## Example things
 						![thing](img/thing1.png)
@@ -113,24 +163,29 @@
 						![thing](img/thing11.png)
 						![thing](img/thing12.png)
 					</section>
-					<style>
-						img[alt="coke"]{
-							float:right;
-							margin-left: 100px !important;
-						}
-					</style>
+
+					<!-- First appliance -->
 					<section data-markdown>
 						![coke](img/coke.png)
 						The first appliance, (…) , was a Coke machine at Carnegie Melon University in the early 1980s. The programmers could connect to the machine over the Internet, check the status of the machine and determine whether or not there would be a cold drink awaiting them, should they decide to make the trip down to the machine.
 					</section>
+
+					<!-- TODO: Smart+Connected -->
 					<section>
 						<h3>Smart+Connected Cities</h3>
 						Large scale experiment by Cisco
 					</section>
 				</section>
 
+				<!-- BEACONS -->
 				<section>
-					<section data-markdown>## Beacons</section>
+
+					<!-- Title -->
+					<section data-markdown>
+						## Beacons
+					</section>
+
+					<!-- Clime -->
 					<section data-markdown>
 						<script type="text/template">
 							 <!-- .slide: data-background="img/clime-bg.png" -->
@@ -139,13 +194,14 @@
 					 	</script>
 					</section>
 
+					<!-- Clime 2 -->
 					<section data-markdown>
 						<script type="text/template">
 							<!-- .slide: data-background="img/clime-bg2.png" -->
 						</script>
 					</section>
 
-
+					<!-- Estimote -->
 					<section data-markdown>
 						<script type="text/template">
 							 <!-- .slide: data-background="img/estimote-bg.png" -->
@@ -154,12 +210,14 @@
 					 	</script>
 					</section>
 
+					<!-- Estimote 2 -->
 					<section data-markdown>
 						<script type="text/template">
 							<!-- .slide: data-background="img/estimote-bg2.png" -->
 						</script>
 					</section>
 
+					<!-- Kontakt.io -->
 					<section data-markdown>
 						<script type="text/template">
 							<!-- .slide: data-background="img/kontakt-bg.png" -->
@@ -170,30 +228,33 @@
 
 				</section>
 
-				<style>
-					img[alt="white-bg"] {
-						border: none;
-					}
-				</style>
-
+				<!-- ESTIMOTE BEACONS -->
 				<section>
-					<section data-markdown>## Estimote beacons</section>
+
+					<!-- Title -->
+					<section data-markdown>
+						## Estimote beacons
+					</section>
 					
+					<!-- Youtube intro -->
 					<section>
 						<iframe width="853" height="480" src="https://www.youtube.com/embed/SrsHBjzt2E8?rel=0" frameborder="0" allowfullscreen></iframe>
 					</section>
 
+					<!-- Quote -->
 					<section data-markdown>
 						## Your phone is always with you,
 						## smart beacons give it CONTEXT.
 					</section>
 
+					<!-- Range -->
 					<section data-markdown><script type="text/template">
 						<!-- .slide: data-background="white"-->
 						## Range <!-- .element: style="color:black"-->
 						![white-bg](img/estimote-range.png)
 					</script></section>
 
+					<!-- Unique ID -->
 					<section data-markdown><script type="text/template">
 						<!-- .slide: data-background="white"-->
 						
@@ -206,84 +267,906 @@
 						* proximityUUID (16 bytes) 
 						* major number (2 bytes)
 						* minor number (2 bytes)
-						
 					</script></section>
 
-					<section data-markdown><script type="text/template">
+ 					<!-- "The cloud" -->
+ 					<section data-markdown><script type="text/template">
 						<!-- .slide: data-background="white"-->
 						## Using "the cloud" <!-- .element: style="color:black"-->
 						![white-bg](img/estimote-cloud.png)
-
 					</script></section>
+
 				</section>
+
+				<!-- SAMPLE ESTIMOTE APP -->
 				<section>
+
+					<!-- Title -->
 					<section data-markdown>
 						## Let's run sample Estimote app...
 					</section>
 
+					<!-- Screen 1 -->
 					<section>
-						<img src="img/sample-1.png" style="height:90vh" />
+						<img src="img/sample-1.png" class="screen" />
 					</section>
 
+					<!-- Monitoring beacons -->
 					<section data-markdown>
-					## Use 1: monitoring beacons in range
+						## Use 1: monitoring beacons in range
 
-					Apps can subscribe in the operating system to constantly listen for particular identifiers. 
-					When the phone comes into the range of a beacon, the app is notified about this, even if the phone is locked or the app is not currently running.
+						Apps can subscribe in the operating system to constantly listen for particular identifiers. 
+						When the phone comes into the range of a beacon, the app is notified about this, even if the phone is locked or the app is not currently running.
 
-					Try out ** Notify ** demo. 
+						Try out ** Notify ** demo. 
 					</section>
 
+					<!-- Approx. distance to beacon -->
 					<section data-markdown>
-					## Use 2: approx. distance to beacon
+						## Use 2: approx. distance to beacon
 
-					 The smartphone is continuously monitoring the strength of the signal (or RSSI), which is compared to three predefined ranges that divide the area around a beacon into three zones - far, near and immediate.
+						 The smartphone is continuously monitoring the strength of the signal (or RSSI), which is compared to three predefined ranges that divide the area around a beacon into three zones - far, near and immediate.
 
-					 Try out ** Distance ** and ** Proximity ** demo.
+						 Try out ** Distance ** and ** Proximity ** demo.
 					</section>
 
+					<!-- Screen 2 -->
 					<section>
-						<img src="img/sample-2.png" style="height:90vh" />
+						<img src="img/sample-2.png" class="screen" />
 					</section>
 
+					<!-- Proximity zones -->
 					<section>
 						<img src="img/estimote-proximity.png" />
 					</section>
 
+					<!-- Configuration -->
 					<section data-markdown>
-					## Beacon configuration
+						## Beacon configuration
 
-					You can modify some of the beacons' parameters:
+						You can modify some of the beacons' parameters:
 
-					* identifiers (UUID, major and minor)
-					* broadcasting power
-					* advertising interval
+						* identifiers (UUID, major and minor)
+						* broadcasting power
+						* advertising interval
 					</section>
 
+					<!-- Screen 3 -->
 					<section>
-						<img src="img/sample-3.png" style="height:90vh" />
+						<img src="img/sample-3.png" class="screen" />
 					</section>
-
+					
+					<!-- Screen 4 -->
 					<section>
-						<img src="img/sample-5.png" style="height:90vh" />
-						<img src="img/sample-6.png" style="height:90vh" />
+						<img src="img/sample-5.png" class="screen" />
+						<img src="img/sample-6.png" class="screen" />
 					</section>
 
 				</section>
+
+
+				<!-- HOT AND COLD INTRO -->
+				<section>
+
+					<!-- Title -->
+					<section data-markdown>
+						## Coding 101: hot and cold game
+					</section>
+					
+					<!-- Rules  -->
+					<section>
+						<h2>Rules</h2>
+						<li class="fragment">Divide into teams of three</li>
+						<li class="fragment">You can code on one computer</li>
+						<li class="fragment">We're writing this one together – step by step</li>
+						<li class="fragment">Shout if you can't catch up – we'll help</li>
+						<li class="fragment">Don't upload app onto device until we say so</li>
+					</section>
+
+					<!-- Overview -->
+					<section>
+						<img src="img/overview-1.jpg" class="screen" />
+					</section>
+
+					<!-- Run VMWare Player -->
+					<section data-markdown>
+						## Run VMWare Player
+
+						* VMWare Player is software used for virtualization
+						* We'll be having "system inside system": Ubuntu inside Windows
+						* Start -> search for VMWarePlayer
+					</section>
+
+					<!-- Screen 1 -->
+					<section>
+						<img src="img/studio-2.png" class="stretch"></img>
+					</section>
+
+					<!-- Screen 2 -->
+					<section>
+						<h2>Run Android Studio</h2>
+						<img src="img/studio-1.png"></img>
+					</section>
+
+				</section>
+
+				<!-- STAGE 1 -->
 				<section>
 					<section data-markdown>
-						## Coding: hot and cold game
+						## Stage 1
+						#  Make project & create empty activities
 					</section>
-					<section data-markdown>
-						## Rules
 
-						* Divide into teams of three
-						* You can code on one computer
-						* We're writing this one together – step by step
-						* Shout if you can't catch up – we'll help
-						* Don't upload app onto device until we say so
+					<section>
+						<h2>Create new Android project</h2>
+						<img src="img/game-0.png"></img>
+					</section>
+
+					<section>
+						<h2>Create new Android project</h2>
+						<img src="img/game-1.png"></img>
+					</section>
+
+					<section>
+						<h2>Create new Android project</h2>
+						<img src="img/game-2.png"></img>
+					</section>
+
+					<section>
+						<h2>Create new Android project</h2>
+						<img src="img/game-5.png"></img>
+						<img src="img/game-6.png"></img>
+					</section>
+
+					<section>
+						That's how it should look like:
+						<img src="img/game-3.png" class="stretch"></img>
+					</section>
+					
+					<section>
+						<h2>Create ThermometerActivity</h2>
+						<img src="img/game-7.png" class="stretch"></img>
+					
+					</section>
+
+					<section>
+						<h2>Create ThermometerActivity</h2>
+						<img src="img/game-4.png" class="stretch"></img>
+					</section>
+
+					<section>
+						<h2>Edit AndroidManifest.xml</h2>
+							<pre class="stretch"><code class="language-markup">
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.eestec.hotandcold" &gt;
+
+    // Add the permissions on the top
+
+    &lt;uses-permission android:name="android.permission.BLUETOOTH" /&gt;
+    &lt;uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /&gt;
+    &lt;uses-feature android:name="android.hardware.bluetooth_le" android:required="true" /&gt;
+
+    // (...)
+
+&lt;/manifest&gt;
+							</code></pre>
+
+					</section>
+
+					<section>
+						<h2>Edit AndroidManifest.xml</h2>
+							<pre class="stretch"><code class="language-markup">
+// MainActivity
+
+&lt;activity
+    android:name=".MainActivity"
+    android:label="@string/app_name"
+    android:screenOrientation="portrait" &gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name="android.intent.action.MAIN" /&gt;
+        &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+    &lt;/intent-filter&gt;
+&lt;/activity&gt;
+        
+    					</code></pre>
+					</section>
+
+
+
+					<section>
+						<h2>Edit AndroidManifest.xml</h2>
+							<pre class="stretch"><code class="language-markup">
+// Thermometer Activity
+
+&lt;activity
+    android:name=".ThermometerActivity"
+    android:label="@string/title_activity_thermometer"
+    android:configChanges="orientation|keyboardHidden|screenSize"
+    android:parentActivityName=".MainActivity"
+    android:screenOrientation="portrait" &gt;
+    &lt;meta-data
+        android:name="android.support.PARENT_ACTIVITY"
+        android:value="com.eestec.hotandcold.MainActivity" /&gt;
+&lt;/activity&gt;
+							</code></pre>
+					</section>
+				
+				</section>
+
+
+				<!-- stage 2 -->
+				<section>
+
+
+					<!-- Title -->
+					<section data-markdown>
+						## Stage 2
+						#  Update Main Activity & connect it to Thermometer Activity
+					</section>
+
+					<!-- Enable bluetooth -->
+					<section>
+						<h2>Enable Bluetooth</h2>
+						<pre class="stretch"><code class="language-java">
+
+// Neccesary imports
+import android.bluetooth.BluetoothAdapter;
+import android.content.Intent;
+// (...)
+
+public class MainActivity extends ActionBarActivity {	
+	BluetoothAdapter bluetoothAdapter;
+    int REQUEST_ENABLE_BT = 1; // must be greater than 0
+    public boolean bluetoothNotEnabled(){
+        return !bluetoothAdapter.isEnabled();
+    }
+    public void askForBluetoothAccess(){
+        Intent enableBluetoothIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+        startActivityForResult(enableBluetoothIntent, REQUEST_ENABLE_BT);
+    }
+    // (...)
+}
+						</code></pre>
+					</section>
+
+					<!-- Enable bluetooth -->
+					<section>
+						<h2>Enable Bluetooth</h2>
+						<pre class="stretch"><code class="language-java">
+
+// MainActivity's onCreate method
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+    if(bluetoothNotEnabled()) askForBluetoothAccess();
+}
+
+    					</code></pre>
+					</section>
+
+					<!-- Create button -->
+					<section>
+						<h2>Create a button</h2>
+						<span>In activity_main.xml, drag the "Button" onto the screen.</span>
+						<img src="img/game-9.png" class="stretch"></img>
+					</section>
+
+					<!-- Create button -->
+					<section>
+						<h2>Create a button</h2>
+						<span>Change its display text...</span>
+						<img src="img/game-10.png" class="stretch"></img>						
+					</section>
+
+					<!-- Create button -->
+					<section>
+						<h2>Create a button</h2>
+						<span>... and its ID. It'll be its unique identifier in our app.</span>
+						<img src="img/game-11.png" class="stretch"></img>						
+					</section>
+
+					<!-- Create button -->
+					<section>
+						<h2>Create a button</h2>
+						<span>Now, declare Button and Context objects in MainActivity.java</span>
+						<pre><code class="language-java">
+import android.widget.Button;
+import android.content.Context;
+
+public class MainActivity extends ActionBarActivity {
+	Button startButton;
+	Context context = this;
+	
+	//(...)
+
+}
+
+						</code></pre>
+					</section>
+				
+
+					<!-- Create button -->
+					<section>
+						<h2>Create a button</h2>
+						<span>Keep reference to Button and override onClick().</span>
+						<pre><code class="language-java">
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    //(...)
+	startButton = (Button)findViewById(R.id.start_button);
+    startButton.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent thermometerIntent = new Intent(context, ThermometerActivity.class);
+            startActivity(thermometerIntent);
+        }
+    });
+}
+						</code></pre>
+					</section>
+
+					<!-- Try to run it -->
+					<section>
+						<h2>Make & run</h2>
+						<img src="img/game-12.png"></img>
+						<img src="img/game-13.png"></img>
+						<p>You should see an empty activity with a button, which will lead you to second empty activity.</p>
+					</section>
+
+				</section>
+
+				<!-- STAGE 3 -->
+				<section>
+
+					<!-- Title -->
+					<section data-markdown>
+						## Stage 3
+						#  Connection with Estimote SDK
+					</section>
+
+					<!-- Import 1 -->
+					<section>
+						<h2>Import Estimote SDK</h2>
+						<span>Go to <a href="https://github.com/Estimote/Android-SDK">https://github.com/Estimote/Android-SDK</a></span>
+					</section>
+
+					<!-- Import 2 -->
+					<section>
+						<h2>Import Estimote SDK</h2>
+						<span>Navigate to EstimoteSDK</span>
+						<img src="img/game-14.png" class="stretch"></img>
+					</section>
+
+					<!-- Import 3 -->
+					<section>
+						<h2>Import Estimote SDK</h2>
+						<span>Click on estimote-sdk-preview.jar</span>
+						<img src="img/game-15.png" class="stretch"></img>
+					</section>
+
+					<!-- Import 4 -->
+					<section>
+						<h2>Import Estimote SDK</h2>
+						<span>And download its "raw" format</span>
+						<img src="img/game-16.png" class="stretch"></img>
+					</section>
+
+					<!-- Import 5 -->
+					<section>
+						<h2>Import Estimote SDK</h2>
+						<span>Go to /home/student/HotandCold/libs and paste there downloaded estimote-sdk-preview.jar</span>
+					</section>
+
+					<!-- Import 6 -->
+					<section>
+						<h2>Import Estimote SDK</h2>
+						<p>Turn to Project view</p>
+						<img src="img/game-17.png" class="stretch"></img>
+					</section>
+
+					<!-- Import 7 -->
+					<section>
+						<h2>Import Estimote SDK</h2>
+						<p>Add it as a library to our project</p>
+						<img src="img/game-18.png" class="stretch"></img>
+					</section>
+
+					<!-- Update manifest -->
+					<section>
+						<h2>Update manifest</h2>
+						<p>In AndroidManifest.xml</p>
+						<pre><code class="language-markup">
+&lt;manifest&gt;
+	&lt;application&gt;
+		(...)
+		&lt;service android:name="com.estimote.sdk.service.BeaconService"
+            android:exported="false"/&gt;
+    &lt;/application&gt;
+&lt;/manifest&gt;
+						</code></pre>
+					</section>
+
+					<!-- Create Distance class -->
+					<section>
+						<h2>Create empty Distance class</h2>
+						<img src="img/game-19.png" class="stretch"></img>
+					</section>
+
+					<!-- Import Estimote's SDK to Distance -->
+					<section>
+						<h2>Import SDK's objects</h2>
+						<pre><code class="language-java">
+package com.eestec.hotandcold;
+
+import com.estimote.sdk.Beacon;
+import com.estimote.sdk.BeaconManager;
+import com.estimote.sdk.Region;
+import com.estimote.sdk.Utils;
+
+public class Distance {
+
+}
+						</code></pre>
+						Import should be marked as "unused" but it's fine.
 					</section>
 				</section>
+
+				<!-- STAGE 4 -->
+				<section>
+
+					<!-- Title -->
+					<section data-markdown>
+						## Stage 4
+						#  Scan beacons & log distance
+					</section>
+
+					<!-- Class Distance -->
+					<section>
+						<h2>Distance class</h2>
+						<pre><code class="language-java">
+public class Distance {
+
+    private final double MAX_BEACON_DISTANCE = 100;
+    
+    static volatile double distanceToClosestBeacon;
+
+    // Constructor
+    public Distance(){
+        this.distanceToClosestBeacon = MAX_BEACON_DISTANCE;
+    }
+}
+						</code></pre>
+					</section>	
+
+					<!-- Calculate Method 1 -->
+					<section>
+						<h2>Method calculate()</h2>
+						<pre><code class="language-java">
+// New imports, we'll need them in a minute
+import android.util.Log;
+import java.util.List;
+// ...
+
+public class Distance {
+	// (...)
+	public void calculate(BeaconManager beaconManager){
+		// This method will be invoked from Thermometer Activity.
+		// It'll basically measure the distance to the nearest beacon.
+	}
+}
+						</code></pre>
+					</section>
+
+					<!-- Calculate Method 2 -->
+					<section>
+						<h2>Method calculate()</h2>
+						<pre><code class="language-java">
+public void calculate(BeaconManager beaconManager){
+	beaconManager.setRangingListener(new BeaconManager.RangingListener() {
+		// we're inside a new RangingListener object
+		// here, we can override default behavior on event of discovering beacon
+	});
+}
+						</code></pre>
+					</section>
+
+					<!-- Calculate Method 3 -->
+					<section>
+						<h2>Method calculate()</h2>
+						<pre><code class="language-java">
+public void calculate(BeaconManager beaconManager){
+	beaconManager.setRangingListener(new BeaconManager.RangingListener() {
+		@Override
+        public void onBeaconsDiscovered(Region region, List&lt;Beacon&gt; beacons) {
+        	// here, we can actually operate on Estimote API
+        	// we'll define the function's body on the next slide
+        }
+	});
+}
+						</code></pre>
+					</section>
+
+					<!-- Calculate Method 4 -->
+					<section>
+						<h2>Method calculate()</h2>
+						<pre><code class="language-java">
+public void onBeaconsDiscovered(Region region, List&lt;Beacon&gt; beacons) {
+
+    Integer major, minor;
+
+    for (Beacon rangedBeacon : beacons) {
+        major = rangedBeacon.getMajor();	// that's how we can get beacon's major ID
+        minor = rangedBeacon.getMinor();	// and that's how we can get it's minor ID
+
+        // Estimote provides us with function to compute distance
+        // based on signal's strength
+        Double distanceToThisBeacon = Utils.computeAccuracy(rangedBeacon); 
+        if (distanceToThisBeacon <= distanceToClosestBeacon) {
+            distanceToClosestBeacon = distanceToThisBeacon;
+        }
+    }
+    Log.d("Closest beacon found: ", Double.toString(distanceToClosestBeacon) + " away");
+    Log.d("Closest beacon found: ", "Its unique identifier ID is " + major.toString() + " " + minor.toString());
+}
+						</code></pre>
+					</section>
+
+					<!-- Update Thermometer -->
+					<section>
+						<h2>Update ThermometerActivity</h2>
+						<p>Create new BeaconManager and new Region</p>
+						<pre class="stretch"><code class="language-java">
+// Moooooooaaarrr imports
+import com.estimote.sdk.BeaconManager;
+import com.estimote.sdk.Region;
+import android.os.RemoteException;
+
+// ...
+
+public class ThermometerActivity extends ActionBarActivity {
+
+    private BeaconManager beaconManager;
+    private static final Region ALL_ESTIMOTE_BEACONS = new Region("regionId", null, null, null);
+    private volatile Distance distance;
+    // ...
+}
+						</code></pre>
+					</section>
+
+					<!-- Update Thermometer 2 -->
+					<section>
+						<h2>Update ThermometerActivity</h2>
+						<p>Create new instance of Distance object and invoke it in onCreate()</p>
+						<pre><code class="language-java">
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+(...)
+	beaconManager = new BeaconManager(this);
+	distance = new Distance();
+    distance.calculate(beaconManager);
+}
+						</code></pre>
+					</section>
+
+					<!-- Update Thermometer 3 -->
+					<section>
+						<h2>Update ThermometerActivity</h2>
+						<pre><code class="language-java">
+// in ThermometerActivity class
+
+@Override
+protected void onStart() {
+    super.onStart();
+    beaconManager.connect(new BeaconManager.ServiceReadyCallback() {
+        @Override
+        public void onServiceReady() {
+            try {
+                beaconManager.startRanging(ALL_ESTIMOTE_BEACONS);
+            } catch (RemoteException e) {
+                Log.e("test", "Cannot start ranging", e);
+            }
+        }
+    });
+}
+					</code></pre>
+					</section>
+
+					<!-- Update Thermometer 4 -->
+					<section>
+						<h2>Update ThermometerActivity</h2>
+						<pre><code class="language-java">
+// in ThermometerActivity class
+@Override
+protected void onStop() {
+    super.onStop();
+    try {
+        beaconManager.stopRanging(ALL_ESTIMOTE_BEACONS);
+    } catch (RemoteException e) {
+        Log.e("test", "Cannot stop but it does not matter now", e);
+    }
+    beaconManager.disconnect();
+}
+						</code></pre>
+					</section>
+
+					<!-- Make and run -->
+					<section>
+						<h2>Make and run</h2>
+						If everything is done OK, the distance should be visible in LogCat.
+					</section>
+
+					<!-- Screen from Logcat -->
+					<section>
+						<img src="img/game-20.png" class="stretch"></img>
+					</section>
+
+				</section>
+
+				<!-- STAGE 5 -->
+				<section>
+
+					<!-- Title -->
+					<section data-markdown>
+						## Stage 5
+						#  Show distance on phone's screen
+					</section>
+
+					<!-- Create getter -->
+					<section>
+						<h2>Get distance from Distance.java</h2>
+						<pre><code class="language-java">
+public class Distance { 
+	
+	// ...
+
+	public double getDistance(){
+	        return distanceToClosestBeacon;
+	    }
+	}
+}
+						</code></pre>
+					</section>
+
+					<!-- Edit layout -->
+					<section>
+						<h2>Edit layout</h2>
+						<p>In activity_thermometer.xml, add new TextView.</p>
+						<img src="img/game-21.png" class="stretch"></img>
+					</section>	
+
+					<!-- Edit layout -->
+					<section>
+						<h2>Edit layout</h2>
+						<p>Change its ID.</p>
+						<img src="img/game-22.png" class="stretch"></img>
+					</section>	
+
+					<!-- Edit java -->
+					<section>
+						<h2>Edit ThermometerActivity.java</h2>
+						<p>Declare TextView and distance to show.</p>
+						<pre><code class="language-java">
+import android.widget.TextView;
+
+// ...
+
+public class ThermometerActivity extends ActionBarActivity {
+
+	private TextView distanceText;
+	private volatile double currentDistance;
+
+	// ...
+	}
+}
+						</code></pre>	
+					</section>
+
+					<!-- Edit java -->
+					<section>
+						<h2>Edit ThermometerActivity.java</h2>
+						<p>Keep reference to TextView.</p>
+						<pre><code class="language-java">
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+	// ...
+
+	distanceText = (TextView) findViewById(R.id.beacon_distance);
+}
+						</code></pre>	
+					</section>
+
+					<!-- Edit java -->
+					<section>
+						<h2>Edit ThermometerActivity.java</h2>
+						<p>Start a new Thread.</p>
+						<pre><code class="language-java">
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+	// ...
+
+	thread = new Thread(){
+		// here, we're inside the new Thread object
+		@Override
+	    public void run(){
+	    	// for the Thread to work properly, we need to override its run() method
+		}
+	};
+
+	thread.start(); // start it, when the activity is created
+}
+						</code></pre>	
+					</section>
+
+					<!-- Edit java -->
+					<section>
+						<h2>Edit ThermometerActivity.java</h2>
+						<p>Get distance</p>
+						<pre><code class="language-java">
+@Override
+public void run(){
+    while(???) {
+        try {
+            sleep(50);   
+
+            currentDistance = 0.9*currentDistance + 0.1*distance.getDistance();
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+						</code></pre>	
+					</section>
+
+					<!-- Edit java -->
+					<section>
+						<h2>Edit ThermometerActivity.java</h2>
+						<p>Format text</p>
+						<pre><code class="language-java">
+// ...
+try {
+	// ...
+	String text;
+
+    // format the distance appropriately
+    if (currentDistance >= 1.0){
+        text = String.format("%.2f", currentDistance) + " m";
+    } else {
+        text = String.format("%.2f", 100*currentDistance) + " cm";
+    }
+}
+// ...
+						</code></pre>	
+					</section>
+
+					<!-- Edit java -->
+					<section>
+						<h2>Edit ThermometerActivity.java</h2>
+						<p>Post it to update UI</p>
+						<pre><code class="language-java">
+// ...
+try {
+	//... 
+
+    final String finalText = text;
+
+    // communicate with UI main thread
+    distanceText.post(new Runnable() {
+        public void run() {
+            distanceText.setText(finalText); // here we change the TextView
+        }
+    });
+}
+// ...
+						</code></pre>	
+					</section>
+
+					<!-- What about while -->
+					<section>
+						<p>But what about the while loop?</p>
+						<pre><code class="language-java">
+@Override
+public void run(){
+    while(???) { // wtf is this "???"
+    	// we need a clever boolean, so our background Thread won't change UI forever
+    }
+}
+						</code></pre>	
+					</section>
+
+					<!-- What about while -->
+					<section>
+						<pre><code class="language-java">
+public class ThermometerActivity extends ActionBarActivity {
+	// ...
+    private volatile boolean showProximity = true;
+
+ 	@Override
+    protected void onCreate(Bundle savedInstanceState) {
+	(...)
+	thread = new Thread(){
+            @Override
+            public void run(){
+                while(showProximity) {
+                // ...
+            }
+        }
+	}
+    @Override
+    protected void onStop() {
+    	// ...
+    	showProximity = false;
+    }
+}
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Make and run</h2>
+						<p>It <em>should</em> work!</p>
+					</section>
+
+				</section>
+
+
+
+				<!-- stage 6 -->
+				<section>
+					<section data-markdown>
+						## Stage 6
+						#  Thermometer
+					</section>
+					<section>
+						<h2>ProgressBar layout</h2>
+						<li>Layout: add ProgressBar</li>
+						<li>Edit its style</li>
+					</section>	
+					<section>
+						<h2>In java</h2>
+						<li>getbyid</li>
+						<li>get current progress</li>
+						<li>get current distance</li>
+						<li>calculate new progress</li>
+					</section>									
+				</section>
+
+				<!-- stage 7 -->
+				<section>
+					<section data-markdown>
+						## Stage 7
+						#  Thermomether polishing
+					</section>
+					<section>
+						<h2>Increase it logarithmically</h2>
+					</section>
+					<section>
+						<h2>If it's too near, increase it linearly</h2>
+					</section>
+					<section>
+						<h2>Add colour to it</h2>
+					</section>									
+				</section>
+
+				<!-- stage 8 -->
+				<section>
+					<section data-markdown>
+						## Stage 8
+						#  Final touch
+					</section>
+					<section>
+						<h2>Import image to MainActivity</h2>
+					</section>
+					<section>
+						<h2>Add nice colours</h2>
+					</section>
+					<section>
+						Shutdown if user doesn't enable bluetooth
+					</section>						
+				</section>
+
 			</div>
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.js"></script>
@@ -297,7 +1180,7 @@
 				progress: true,
 				history: true,
 				center: true,
-
+				slideNumber: true,
 				transition: 'convex', // none/fade/slide/convex/concave/zoom
 
 				// Optional reveal.js plugins
