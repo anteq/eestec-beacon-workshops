@@ -189,16 +189,40 @@ android {
 					</section>
 					
 					<section>
-						<h3>Important classes</h3>
-						<p class="fragment">
-							<h4>Activity</h4>
+						<h3>Activity</h3>
 							<pre><code class="language-java">
-								
-							</code></pre>
+public class MainActivity extends ActionBarActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+}							</code></pre>
 						</p>
-						
-						<p class="fragment">
-							<h3>Intent</h>
+					</section>	
+					<section>
+							<h3>Intent</h3>
 							<pre><code class="language-java">
         Intent intent = new Intent(Activity_starting_other_activity, ActivityToBeStarted.class);
         startActivity(intent);
@@ -214,9 +238,6 @@ android {
 
     }
 							</code></pre>
-							
-						</p>
-						<p class="fragment">Bundle</p> 
 						
 					</section>
 					
