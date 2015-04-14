@@ -188,13 +188,36 @@ android {
 						* Values <!-- .element: class="fragment" -->
 					</section>
 					
-					<section data-markdown>
-						##Important classes
+					<section>
+						<h3>Important classes</h3>
+						<p class="fragment">
+							<h4>Activity</h4>
+							<pre><code class="language-java">
+								
+							</code></pre>
+						</p>
 						
-						* Activity <!-- .element: class="fragment" -->
-						* Intent <!-- .element: class="fragment" -->
-						* Bundle <!-- .element: class="fragment" -->
-						* Intents <!-- .element: class="fragment" -->
+						<p class="fragment">
+							<h3>Intent</h>
+							<pre><code class="language-java">
+        Intent intent = new Intent(Activity_starting_other_activity, ActivityToBeStarted.class);
+        startActivity(intent);
+							</code></pre>
+							<pre><code class="language-java">
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent){
+        if(resultCode != RESULT_OK) {
+            finish(); //ends activity
+        } else {
+            // do something with the information retrieved
+        }
+
+    }
+							</code></pre>
+							
+						</p>
+						<p class="fragment">Bundle</p> 
+						
 					</section>
 					
 					
