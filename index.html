@@ -129,6 +129,120 @@
 					</script></section>
 				</section>
 
+				<!-- INTRO TO ANDROID-->
+				<section>
+					<!-- Title -->
+					<section data-markdown>
+						## Introduction to Android
+					</section>
+					<section>
+						<h3>Activity</h3>
+							<pre><code class="language-java">
+public class MainActivity extends Activity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+}							</code></pre>
+						</p>
+					</section>
+					<section>
+						<h3>Intent</h3>
+							<p class="fragment"><pre><code class="language-java">
+        Intent intent = new Intent(Activity_starting_other_activity, ActivityToBeStarted.class);
+        startActivity(intent);
+							</code></pre></p>
+							<p class="fragment"><pre><code class="language-java">
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent){
+        if(resultCode != RESULT_OK) {
+            finish(); //ends activity
+        } else {
+            // do something with the information retrieved
+        }
+
+    }
+							</code></pre></p>
+					</section>
+					<section>
+						<h3>Logger</h3>
+						<p class="fragment"><em>debug (Log.d)</em></p>
+						<p class="fragment">info (Log.i)</p>
+						<p class="fragment">error (Log.e)</p>
+						<p class="fragment">verbose (Log.v)</p>
+						<p class="fragment">warn (Log.w)</p>
+					</section>
+					<section data-markdown>
+						## Android studio
+					</section>
+					<section>
+						<h2>Project Structure</h2>
+						<img src="img/android-1.png"></img>
+					</section>
+					<section>
+						<h3>Gradle</h3>
+						<pre><code class="language-java">
+android {
+    compileSdkVersion 21
+    buildToolsVersion "21.1.2"
+
+    defaultConfig {
+        applicationId "com.workshops.helloworld"
+        minSdkVersion 18
+        targetSdkVersion 21
+        versionCode 1
+        versionName "1.0"
+    }
+    ...
+    }
+						</code></pre>
+					</section>
+					<section>
+						<h3>Android Manifest</h3>
+						<pre><code class="language-java">
+
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.workshops.helloworld" &gt;
+
+    &lt;application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:labelw="@string/app_name"
+        android:theme="@style/AppTheme" &gt;
+        &lt;activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" &gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name="android.intent.action.MAIN" /&gt;
+                &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/activity&gt;
+    &lt;/application&gt;
+
+&lt;/manifest&gt;
+					</code></pre>
+					</section>
+					
+					<section data-markdown>
+						##Resources
+						
+						* Drawable <!-- .element: class="fragment" -->
+						* Layout <!-- .element: class="fragment" -->
+						* Values <!-- .element: class="fragment" -->
+						  * Styles <!-- .element: class="fragment" -->
+						  * Strings <!-- .element: class="fragment" -->
+						  * Colors <!-- .element: class="fragment" -->
+						  * Dimens <!-- .element: class="fragment" -->
+						
+					</section>
+					
+				</section>
+
+
 				<!-- INTRO TO IOT -->
 				<section>
 
@@ -326,7 +440,7 @@
 
 						You can modify some of the beacons' parameters:
 
-						* identifiers (UUID, major and minor)
+						* identifiers (major and minor)
 						* broadcasting power
 						* advertising interval
 					</section>
@@ -423,6 +537,10 @@
 						<img src="img/game-3.png" class="stretch"></img>
 					</section>
 					
+					<section>
+						<img src="img/game-23.png" class="stretch"></img>
+					</section>
+
 					<section>
 						<h2>Create ThermometerActivity</h2>
 						<img src="img/game-7.png" class="stretch"></img>
@@ -795,17 +913,18 @@ public void calculate(BeaconManager beaconManager){
 						<pre><code class="language-java">
 public void onBeaconsDiscovered(Region region, List&lt;Beacon&gt; beacons) {
 
-    Integer major, minor;
+    Integer major = 0;
+    Integer minor = 0;
 
     for (Beacon rangedBeacon : beacons) {
-        major = rangedBeacon.getMajor();	// that's how we can get beacon's major ID
-        minor = rangedBeacon.getMinor();	// and that's how we can get it's minor ID
-
+        
         // Estimote provides us with function to compute distance
         // based on signal's strength
         Double distanceToThisBeacon = Utils.computeAccuracy(rangedBeacon); 
         if (distanceToThisBeacon <= distanceToClosestBeacon) {
             distanceToClosestBeacon = distanceToThisBeacon;
+            major = rangedBeacon.getMajor(); // that's how we can get beacon's major ID
+        	minor = rangedBeacon.getMinor(); // and that's how we can get it's minor ID
         }
     }
     Log.d("Closest beacon found: ", Double.toString(distanceToClosestBeacon) + " away");
@@ -957,13 +1076,13 @@ public class ThermometerActivity extends ActionBarActivity {
 
 	private TextView distanceText;
 	private volatile double currentDistance;
+	private Thread thread;
 
 	// ...
 	}
 }
 						</code></pre>	
 					</section>
-
 					<!-- Edit java -->
 					<section>
 						<h2>Edit ThermometerActivity.java</h2>
@@ -1011,6 +1130,30 @@ public void run(){
         try {
             sleep(50);   
 
+            // currentDistance = ???
+            // How can we get distance from Distance Class?
+            // How can we "average it"?
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+						</code></pre>	
+					</section>
+
+					<!-- Edit java -->
+					<section>
+						<h2>Edit ThermometerActivity.java</h2>
+						<p>Get distance</p>
+						<pre><code class="language-java">
+@Override
+public void run(){
+    while(???) {
+        try {
+            sleep(50);   
+
+            // Possible solution:
             currentDistance = 0.9*currentDistance + 0.1*distance.getDistance();
 
         } catch (InterruptedException e) {
@@ -1018,6 +1161,24 @@ public void run(){
         }
     }
 }
+						</code></pre>	
+					</section>
+
+					<!-- Edit java -->
+					<section>
+						<h2>Edit ThermometerActivity.java</h2>
+						<p>Format text</p>
+						<pre><code class="language-java">
+// ...
+try {
+	// ...
+	String text;
+
+    // format the distance appropriately
+    // e.g. when currentDistance = 1.2, set text to 1.2 meters
+    // and when currentDistance = 0.8, set text to 80 centimeters
+}
+// ...
 						</code></pre>	
 					</section>
 
@@ -1115,56 +1276,319 @@ public class ThermometerActivity extends ActionBarActivity {
 
 				<!-- stage 6 -->
 				<section>
+					
+					<!-- Title -->
 					<section data-markdown>
 						## Stage 6
 						#  Thermometer
 					</section>
+
+					<section>
+						That's what we want to achieve:
+						<img src="img/game-24.png" class="stretch"></img>
+					</section>
+
+					<!-- Przesun -->
+					<section>
+						<h2>Thermometer layout</h2>
+						Drag the TextView to the bottom, to make space for the bar.
+						<img src="img/game-25.png" class="stretch"></img>
+					</section>
+					
+					<!-- Change to text -->
+					<section>
+						<h2>Thermometer layout</h2>
+						<img src="img/game-26.png" class="stretch"></img>
+					</section>
+
 					<section>
 						<h2>ProgressBar layout</h2>
-						<li>Layout: add ProgressBar</li>
-						<li>Edit its style</li>
+						Now, in Text edit mode, type the code below:
+						<pre><code class="language-markup">
+&lt;ProgressBar
+	android:id="@+id/thermometer"
+	android:layout_width="12dip"
+	android:layout_height="300dip"
+	style="@style/Widget.ProgressBar.Vertical" // undefined, yeah... in a minute :)
+	android:indeterminate="false"
+	android:layout_alignParentTop="true"
+	android:layout_centerHorizontal="true"
+	android:layout_marginTop="62dp" 
+/&gt;
+        				</code></pre>
 					</section>	
+
 					<section>
-						<h2>In java</h2>
-						<li>getbyid</li>
-						<li>get current progress</li>
-						<li>get current distance</li>
-						<li>calculate new progress</li>
+						<h2>Style our ProgressBar</h2>
+						In file res/values/styles.xml add following lines:
+						<pre><code class="language-markup">
+
+&lt;style name="Widget"&gt;
+&lt;/style&gt;
+
+&lt;style name="Widget.ProgressBar"&gt;
+    &lt;item name="android:indeterminateOnly"&gt;true&lt;/item&gt;
+    &lt;item name="android:indeterminateBehavior"&gt;repeat&lt;/item&gt;
+    &lt;item name="android:indeterminateDuration"&gt;3500&lt;/item&gt;
+    &lt;item name="android:minWidth"&gt;48dip&lt;/item&gt;
+    &lt;item name="android:maxWidth"&gt;48dip&lt;/item&gt;
+    &lt;item name="android:minHeight"&gt;48dip&lt;/item&gt;
+    &lt;item name="android:maxHeight"&gt;48dip&lt;/item&gt;
+&lt;/style&gt;
+
+						</code></pre>
+					</section>
+
+										<section>
+						<h2>Style our ProgressBar</h2>
+						In file res/values/styles.xml add following lines:
+						<pre><code class="language-markup">
+
+&lt;style name="Widget.ProgressBar.Vertical"&gt;
+    &lt;item name="android:indeterminateOnly"&gt;false&lt;/item&gt;
+    &lt;item name="android:progressDrawable"&gt;@drawable/progress_bar_vertical&lt;/item&gt; // YES, WE KNOW
+    &lt;item name="android:indeterminateDrawable"&gt;@android:drawable/progress_indeterminate_horizontal&lt;/item&gt;
+    &lt;item name="android:minWidth"&gt;1dip&lt;/item&gt;
+    &lt;item name="android:maxWidth"&gt;12dip&lt;/item&gt;
+&lt;/style&gt;
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Style the thermometer</h2>
+						Create file res/drawable/progress_bar_vertical.xml and fill it with us:
+						<pre><code class="language-markup">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;layer-list xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+		// here we'll be creating two items
+&lt;/layer-list&gt;
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Style the thermometer</h2>
+						Create file res/drawable/progress_bar_vertical.xml and fill it with us:
+						<pre><code class="language-markup">
+&lt;item android:id="@android:id/background"&gt;
+        &lt;shape&gt;
+            &lt;corners android:radius="5dip" /&gt;
+            &lt;gradient
+                android:startColor="#ff9d9e9d"
+                android:centerColor="#ff5a5d5a"
+                android:centerY="0.75"
+                android:endColor="#ff747674"
+                android:angle="180"
+                /&gt;
+        &lt;/shape&gt;
+&lt;/item&gt;
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Style the thermometer</h2>
+						Create file res/drawable/progress_bar_vertical.xml and fill it with us:
+						<pre><code class="language-markup">
+&lt;item android:id="@android:id/progress"&gt;
+    &lt;clip android:clipOrientation="vertical" android:gravity="bottom"&gt;
+        &lt;shape&gt;
+            &lt;corners android:radius="5dip" /&gt;
+            &lt;gradient
+                android:startColor="@color/cold"  // undefined
+                android:centerColor="@color/warm" // undefined, too
+                android:centerY="0.75"
+                android:endColor="@color/hot" // undefined, as well
+                android:angle="90"
+                /&gt;
+        &lt;/shape&gt;
+    &lt;/clip&gt;
+&lt;/item&gt;
+						</code></pre>
+					</section>
+
+					<section>
+						<h2> Add some colours </h2>
+						Create file res/values/colors.xml and fill it with:
+						<pre><code class="language-markup">
+&lt;resources&gt;
+
+    &lt;color name="cold"&gt;#ff0969A2&lt;/color&gt;
+    &lt;color name="warm"&gt;#ffff4f00&lt;/color&gt;
+    &lt;color name="hot"&gt;#ffff2300&lt;/color&gt;
+
+&lt;/resources&gt;
+						</code></pre>
+					</section>
+
+					<section>
+						Layout should be ready.<br /> 
+						Now it's time to control the bar's progress from Java.
+					</section>
+
+					<section>
+						Let's go to ThermometerBar activity, and add following lines:
+						<pre><code class="language-java">
+import android.widget.ProgressBar;
+
+// ...
+
+private ProgressBar progress;
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+	// ...
+	progress = (ProgressBar) findViewById(R.id.thermometer);
+	progress.setMax(100);
+    
+	// ...
+}
+						</code></pre>
+					</section>
+
+					<section>
+						A few last steps, and...
+						<pre><code class="language-java">
+// in Thread's run() method
+
+double currentProgress;
+double progressStatus;
+						</code></pre>
+					</section>
+
+					<section>
+						... here we are.
+						<pre><code class="language-java">
+
+// inside while & try
+
+progressStatus = progress.getMax () - distance.getDistance();
+currentProgress = progress.getProgress();
+currentProgress = Math.ceil(0.9 * currentProgress + 0.1 * progressStatus);
+progress.setProgress((int)currentProgress);
+
+						</code></pre>
+					</section>
+
+<!-- 					<section>
+						<pre><code class="language-java">
+// in Distance.java
+
+private final double NEAR_ZONE = 0.5;
+
+// ...
+
+public double getLogarithmicDistance(){
+        double logDistance;
+        if(distanceToClosestBeacon > NEAR_ZONE) {
+           logDistance  = -9.637112435 * Math.log(distanceToClosestBeacon) + 43.53849494;
+        }else{
+           logDistance = distanceToClosestBeacon*100;
+        }
+        Log.d("logDistance", String.valueOf(logDistance));
+        return logDistance;
+   }
+
+						</code></pre>
+					</section> -->
+
+					<section>
+						It should <em>kind of</em> work.
 					</section>									
 				</section>
+
 
 				<!-- stage 7 -->
 				<section>
 					<section data-markdown>
 						## Stage 7
-						#  Thermomether polishing
-					</section>
-					<section>
-						<h2>Increase it logarithmically</h2>
-					</section>
-					<section>
-						<h2>If it's too near, increase it linearly</h2>
-					</section>
-					<section>
-						<h2>Add colour to it</h2>
-					</section>									
-				</section>
-
-				<!-- stage 8 -->
-				<section>
-					<section data-markdown>
-						## Stage 8
 						#  Final touch
 					</section>
+
 					<section>
 						<h2>Import image to MainActivity</h2>
+						Go to <a href="https://github.com/adamnie/HotandCold">https://github.com/adamnie/HotandCold</a><br />
+						Here, you can find the whole code of our app.
 					</section>
+
 					<section>
-						<h2>Add nice colours</h2>
+						<img src="img/game-27.png" class="stretch"></img>
 					</section>
+
+					<section>
+						Navigate to app/src/main/res/drawable and download HotandCold.png
+						<br />Place it in res/drawable in our project.
+					</section>
+
+					<section>
+						A tip to quickly open the project's folder in file explorer:
+						<img src="img/game-28.png" class="stretch"></img>
+					</section>
+
+					<section>
+						<h2>Add picture to main activity</h2>
+						In main_activity.xml Design mode, drag ImageView to phone's screen.
+						Change its background property to new image
+					</section>
+
+					<section>
+						<h2>Add title</h2>
+					</section>
+
+					<section>
+						<h2>Style the button</h2>
+					</section>
+
+					<section>
+						<h2>Style the text</h2>
+					</section>
+
+					<section>
+						<h2>Add background colors in </h2>
+					</section>
+
 					<section>
 						Shutdown if user doesn't enable bluetooth
 					</section>						
+				</section>
+
+				<!-- Your own app -->
+				<section>
+					<!-- Title -->
+					<section>
+						<h2>Now make your own app!</h2>
+					</section>
+
+					<section>
+						<li>Think in groups about Internet of Things ...</li>
+						<li>... and how to implement something great using beacons</li>
+						<li>We can help</li>
+						<li>You're welcome to use provided Estimote SDK cheat sheet</li>
+					</section>
+
+					<section>
+						<h2>Sample ideas</h2>
+							<li>Beacons in museums </li><small>info about exhibits, when you're near them</small>
+							<li>Beacons in hospitals </li><small>medic recieves info about patient when near his bed</small>
+							<li>Beacons on dog's collar </li><small>alarms if the dog has ran away</small>
+							<li>Beacons in backpacks </li><small>alarms if we forget to take it from e.g. home</small>
+					</section>
+
+					<section>
+						<h2>Sample ideas</h2>
+							<li>Beacons in shopping centres </li><small>when enetring the shop, you get info about current sales</small>
+							<li>Beacons as gate controllers </li><small>door opens when we're near them</small>
+							<li>Beacons in restaurants </li><small>shows you menu if you're in the restaurant</small>
+							<li>Beacons in gyms </li><small>showing you video instructions for certain device</small>
+					</section>
+
+					<section>
+						<h2>Useful links</h2>
+						<li><a href="https://developer.android.com/guide/index.html">https://developer.android.com/guide/index.html</a></li>
+						<li><a href="http://estimote.github.io/Android-SDK/JavaDocs/">http://estimote.github.io/Android-SDK/JavaDocs/</a></li>
+						<li><a href="http://google.com">http://google.com</a></li>
+						<li><a href="http://stackoverflow.com">http://stackoverflow.com</a></li>
+						<li><a href="http://anteq.github.io/eestec-beacon-workshops">http://anteq.github.io/eestec-beacon-workshops</a></li>
+					</section>
+
 				</section>
 
 			</div>
