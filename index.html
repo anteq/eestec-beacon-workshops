@@ -261,23 +261,28 @@ public class MainActivity extends Activity {
 }							</code></pre>
 						</p>
 					</section>
+
+					<section>
+						<img src="img/android-flow.png" class="stretch"></img>
+					</section>
+
 					<section>
 						<h3>Intent</h3>
-							<p class="fragment"><pre><code class="language-java">
-        Intent intent = new Intent(Activity_starting_other_activity, ActivityToBeStarted.class);
-        startActivity(intent);
-							</code></pre></p>
-							<p class="fragment"><pre><code class="language-java">
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent){
-        if(resultCode != RESULT_OK) {
-            finish(); //ends activity
-        } else {
-            // do something with the information retrieved
-        }
-
+							<li class="fragment"><pre><code class="language-java">
+Intent intent = new Intent(Activity_starting_other_activity, ActivityToBeStarted.class);
+startActivity(intent);
+							</code></pre></li>
+							<li class="fragment"><pre><code class="language-java">
+@Override
+protected void onActivityResult(int requestCode, int resultCode, Intent intent){
+    if(resultCode != RESULT_OK) {
+        finish(); //ends activity
+    } else {
+        // do something with the information retrieved
     }
-							</code></pre></p>
+
+}
+							</code></pre></li>
 					</section>
 					<section>
 						<h3>Logger</h3>
@@ -351,6 +356,8 @@ android {
 						  * Dimens <!-- .element: class="fragment" -->
 						
 					</section>
+
+
 					
 				</section>
 
@@ -398,9 +405,17 @@ android {
 
 					<!-- TODO: Smart+Connected -->
 					<section>
-						<h3>Smart+Connected Cities</h3>
-						Large scale experiment by Cisco
+						<h3>Cisco - pioneer in Internet of Everything</h3>
+						<iframe width="853" height="480" src="https://www.youtube.com/embed/tdmJW8bSsqo?rel=0" frameborder="0" allowfullscreen></iframe>
 					</section>
+
+					<section>
+						<h3>Smart+Connected Cities</h3>
+						<iframe width="853" height="480" src="https://www.youtube.com/embed/TCbvxb5t5_8?rel=0" frameborder="0" allowfullscreen></iframe>
+					</section>
+
+
+
 				</section>
 
 				<!-- BEACONS -->
@@ -582,7 +597,8 @@ android {
 					<!-- Rules  -->
 					<section>
 						<h2>Rules</h2>
-						<li class="fragment">Divide into teams of three</li>
+						<li class="fragment">Divide into teams of three or four</li>
+						<li class="fragment">Experienced people - please mix with novices</li>
 						<li class="fragment">You can code on one computer</li>
 						<li class="fragment">We're writing this one together – step by step</li>
 						<li class="fragment">Shout if you can't catch up – we'll help</li>
@@ -635,7 +651,8 @@ android {
 
 					<section>
 						<h2>Create new Android project</h2>
-						<img src="img/game-2.png"></img>
+						<img src="img/game-2.png" class="stretch"></img><br />
+						<span>We use API 18, because it's the lowest that works with Bluetooth 4.0.</span>
 					</section>
 
 					<section>
@@ -650,8 +667,10 @@ android {
 					</section>
 					
 					<section>
-						<img src="img/game-23.png" class="stretch"></img>
+						<h2>App's structure</h2>
+						<img src="img/structure.jpg" class="stretch" />
 					</section>
+
 
 					<section>
 						<h2>Create ThermometerActivity</h2>
@@ -667,6 +686,8 @@ android {
 					<section>
 						<h2>Edit AndroidManifest.xml</h2>
 							<pre class="stretch"><code class="language-markup">
+// Don't type lines with "//" - these are comments!
+
 &lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.eestec.hotandcold" &gt;
 
@@ -688,11 +709,13 @@ android {
 							<pre class="stretch"><code class="language-markup">
 // MainActivity
 
+// add only screenOrientation - the rest should already be here
 &lt;activity
     android:name=".MainActivity"
     android:label="@string/app_name"
-    android:screenOrientation="portrait" &gt;
+    android:screenOrientation="portrait" &gt; 
     &lt;intent-filter&gt;
+    	// the following lines make our Activity default - it starts when we start the app
         &lt;action android:name="android.intent.action.MAIN" /&gt;
         &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
     &lt;/intent-filter&gt;
@@ -708,6 +731,7 @@ android {
 							<pre class="stretch"><code class="language-markup">
 // Thermometer Activity
 
+// add only configChanges and screenOrientation - the rest should already be here
 &lt;activity
     android:name=".ThermometerActivity"
     android:label="@string/title_activity_thermometer"
@@ -738,15 +762,14 @@ android {
 					<section>
 						<h2>Enable Bluetooth</h2>
 						<pre class="stretch"><code class="language-java">
-
 // Neccesary imports
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
-// (...)
+// (...) - leave the rest unchanged
 
 public class MainActivity extends ActionBarActivity {	
-	BluetoothAdapter bluetoothAdapter;
-    int REQUEST_ENABLE_BT = 1; // must be greater than 0
+	private BluetoothAdapter bluetoothAdapter;
+    private int REQUEST_ENABLE_BT = 1; // must be greater than 0
     public boolean bluetoothNotEnabled(){
         return !bluetoothAdapter.isEnabled();
     }
@@ -754,7 +777,7 @@ public class MainActivity extends ActionBarActivity {
         Intent enableBluetoothIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
         startActivityForResult(enableBluetoothIntent, REQUEST_ENABLE_BT);
     }
-    // (...)
+    // (...) - leave the rest unchanged
 }
 						</code></pre>
 					</section>
@@ -764,14 +787,16 @@ public class MainActivity extends ActionBarActivity {
 						<h2>Enable Bluetooth</h2>
 						<pre class="stretch"><code class="language-java">
 
-// MainActivity's onCreate method
+// MainActivity's onCreate method - it's already there
+// we just change it a little bit
 
 @Override
 protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
-    bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-    if(bluetoothNotEnabled()) askForBluetoothAccess();
+    super.onCreate(savedInstanceState); // invokes parent's onCreate methon; common practice
+    setContentView(R.layout.activity_main); // binds xml layout with java class
+
+    bluetoothAdapter = BluetoothAdapter.getDefaultAdapter(); // add this...
+    if(bluetoothNotEnabled()) askForBluetoothAccess();		// ... and this
 }
 
     					</code></pre>
@@ -805,10 +830,13 @@ protected void onCreate(Bundle savedInstanceState) {
 						<pre><code class="language-java">
 import android.widget.Button;
 import android.content.Context;
+// ...
+
 
 public class MainActivity extends ActionBarActivity {
-	Button startButton;
-	Context context = this;
+	// declare new Objects, that we'll use in a second
+	private Button startButton;
+	private Context context = this;
 	
 	//(...)
 
@@ -826,9 +854,11 @@ public class MainActivity extends ActionBarActivity {
 @Override
 protected void onCreate(Bundle savedInstanceState) {
     //(...)
-	startButton = (Button)findViewById(R.id.start_button);
+	startButton = (Button)findViewById(R.id.start_button); // this is CASTING
+	// findViewById returns unspecified ViewType, we have to CAST it on the one wanted 
     startButton.setOnClickListener(new View.OnClickListener() {
-        @Override
+    	// here we set new Object to listen to the onClick events
+        @Override // here we OVERRIDE the existing method
         public void onClick(View v) {
             Intent thermometerIntent = new Intent(context, ThermometerActivity.class);
             startActivity(thermometerIntent);
@@ -844,6 +874,9 @@ protected void onCreate(Bundle savedInstanceState) {
 						<img src="img/game-12.png"></img>
 						<img src="img/game-13.png"></img>
 						<p>You should see an empty activity with a button, which will lead you to second empty activity.</p>
+						<aside class="notes">
+        Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
+    </aside>
 					</section>
 
 				</section>
@@ -873,7 +906,7 @@ protected void onCreate(Bundle savedInstanceState) {
 					<!-- Import 3 -->
 					<section>
 						<h2>Import Estimote SDK</h2>
-						<span>Click on estimote-sdk-preview.jar</span>
+						<span>Click on estimote-sdk-preview.aar</span>
 						<img src="img/game-15.png" class="stretch"></img>
 					</section>
 
@@ -887,7 +920,10 @@ protected void onCreate(Bundle savedInstanceState) {
 					<!-- Import 5 -->
 					<section>
 						<h2>Import Estimote SDK</h2>
-						<span>Go to /home/student/HotandCold/libs and paste there downloaded estimote-sdk-preview.jar</span>
+						<li class="fragment">Unzip it (right-click -> Extract here)</li>
+						<li class="fragment">Rename classes.jar to estimote-sdk-preview.jar</li>
+						<li class="fragment">Go to /home/student/HotandCold/libs and paste there estimote-sdk-preview.jar</li>
+						<span></span>
 					</section>
 
 					<!-- Import 6 -->
@@ -937,7 +973,7 @@ import com.estimote.sdk.Region;
 import com.estimote.sdk.Utils;
 
 public class Distance {
-
+	// empty for now
 }
 						</code></pre>
 						Import should be marked as "unused" but it's fine.
@@ -959,9 +995,12 @@ public class Distance {
 						<pre><code class="language-java">
 public class Distance {
 
+	// private means that variable cannot be accessed from other Objects
+	// final means that the variable's value cannot be changed
     private final double MAX_BEACON_DISTANCE = 100;
     
-    static volatile double distanceToClosestBeacon;
+    // volatile means that this value will be modified or accessed by different threads
+    private volatile double distanceToClosestBeacon;
 
     // Constructor
     public Distance(){
@@ -1012,6 +1051,9 @@ public void calculate(BeaconManager beaconManager){
 		@Override
         public void onBeaconsDiscovered(Region region, List&lt;Beacon&gt; beacons) {
         	// here, we can actually operate on Estimote API
+        	// it takes two arguments:
+        	// 	Region region - Region object, which defines which devices we listen to
+        	// 	List&lt;Beacon&gt; beacons - list of found beacons
         	// we'll define the function's body on the next slide
         }
 	});
@@ -1027,9 +1069,8 @@ public void onBeaconsDiscovered(Region region, List&lt;Beacon&gt; beacons) {
 
     Integer major = 0;
     Integer minor = 0;
-
+    distanceToClosestBeacon = MAX_BEACON_DISTANCE; // resetting closest beacon proximity
     for (Beacon rangedBeacon : beacons) {
-        
         // Estimote provides us with function to compute distance
         // based on signal's strength
         Double distanceToThisBeacon = Utils.computeAccuracy(rangedBeacon); 
@@ -1054,14 +1095,15 @@ public void onBeaconsDiscovered(Region region, List&lt;Beacon&gt; beacons) {
 import com.estimote.sdk.BeaconManager;
 import com.estimote.sdk.Region;
 import android.os.RemoteException;
-
 // ...
 
 public class ThermometerActivity extends ActionBarActivity {
 
-    private BeaconManager beaconManager;
+    private BeaconManager beaconManager; // service responsible for scanning beacons
     private static final Region ALL_ESTIMOTE_BEACONS = new Region("regionId", null, null, null);
-    private volatile Distance distance;
+    	// we define listening to all beacons
+    private volatile Distance distance; // instance of our Distance class
+    
     // ...
 }
 						</code></pre>
@@ -1092,6 +1134,7 @@ protected void onCreate(Bundle savedInstanceState) {
 protected void onStart() {
     super.onStart();
     beaconManager.connect(new BeaconManager.ServiceReadyCallback() {
+    	// we implement onServiceReady, because ServiceReadyCallback is an interface
         @Override
         public void onServiceReady() {
             try {
@@ -1153,6 +1196,7 @@ public class Distance {
 	
 	// ...
 
+	// we define getter so we can get distance from other Objects
 	public double getDistance(){
 	        return distanceToClosestBeacon;
 	    }
@@ -1186,9 +1230,9 @@ import android.widget.TextView;
 
 public class ThermometerActivity extends ActionBarActivity {
 
-	private TextView distanceText;
-	private volatile double currentDistance;
-	private Thread thread;
+	private TextView distanceText; // here we'll set the text for display
+	private volatile double currentDistance = 0; // here we'll store data from Distance class
+	private Thread thread; // new thread will allow us to run asynchronously
 
 	// ...
 	}
@@ -1243,11 +1287,12 @@ public void run(){
             sleep(50);   
 
             // currentDistance = ???
+            // QUEST FOR YOU:
             // How can we get distance from Distance Class?
             // How can we "average it"?
 
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // log information about error;  common practice
         }
     }
 }
@@ -1286,6 +1331,7 @@ try {
 	// ...
 	String text;
 
+	// ANOTHER EXCITING QUEST :D
     // format the distance appropriately
     // e.g. when currentDistance = 1.2, set text to 1.2 meters
     // and when currentDistance = 0.8, set text to 80 centimeters
@@ -1324,9 +1370,10 @@ try {
 try {
 	//... 
 
-    final String finalText = text;
+    final String finalText = text; // String passed to another thread has to be final
 
-    // communicate with UI main thread
+    // we cannot change UI directly from another thread
+    // we have to communicate with main thread by post() method
     distanceText.post(new Runnable() {
         public void run() {
             distanceText.setText(finalText); // here we change the TextView
@@ -1410,6 +1457,7 @@ public class ThermometerActivity extends ActionBarActivity {
 					<!-- Change to text -->
 					<section>
 						<h2>Thermometer layout</h2>
+						Only for pr0s:
 						<img src="img/game-26.png" class="stretch"></img>
 					</section>
 
@@ -1419,13 +1467,13 @@ public class ThermometerActivity extends ActionBarActivity {
 						<pre><code class="language-markup">
 &lt;ProgressBar
 	android:id="@+id/thermometer"
-	android:layout_width="12dip"
+	android:layout_width="30dip" &lt;!-- dip = density independent pixels --&gt;
 	android:layout_height="300dip"
-	style="@style/Widget.ProgressBar.Vertical" // undefined, yeah... in a minute :)
-	android:indeterminate="false"
-	android:layout_alignParentTop="true"
-	android:layout_centerHorizontal="true"
-	android:layout_marginTop="62dp" 
+	style="@style/Widget.ProgressBar.Vertical" &lt;!-- undefined, yeah... in a minute :) --&gt;
+	android:indeterminate="false" &lt;!-- that means, that our bar will be "finite" --&gt;
+	android:layout_alignParentTop="true" &lt;!-- stick it to the top of Parent --&gt;
+	android:layout_centerHorizontal="true" &lt;!-- center it --&gt;
+	android:layout_marginTop="62dp" &lt;!-- give it some margin --&gt;
 /&gt;
         				</code></pre>
 					</section>	
@@ -1458,7 +1506,8 @@ public class ThermometerActivity extends ActionBarActivity {
 
 &lt;style name="Widget.ProgressBar.Vertical"&gt;
     &lt;item name="android:indeterminateOnly"&gt;false&lt;/item&gt;
-    &lt;item name="android:progressDrawable"&gt;@drawable/progress_bar_vertical&lt;/item&gt; // YES, WE KNOW
+    &lt;item name="android:progressDrawable"&gt;@drawable/progress_bar_vertical&lt;/item&gt; 
+    	&lt;!-- YES, WE KNOW IT'S UNDEFINED --&gt;
     &lt;item name="android:indeterminateDrawable"&gt;@android:drawable/progress_indeterminate_horizontal&lt;/item&gt;
     &lt;item name="android:minWidth"&gt;1dip&lt;/item&gt;
     &lt;item name="android:maxWidth"&gt;12dip&lt;/item&gt;
@@ -1505,10 +1554,10 @@ public class ThermometerActivity extends ActionBarActivity {
         &lt;shape&gt;
             &lt;corners android:radius="5dip" /&gt;
             &lt;gradient
-                android:startColor="@color/cold"  // undefined
-                android:centerColor="@color/warm" // undefined, too
+                android:startColor="@color/cold"  &lt;!-- undefined --&gt;
+                android:centerColor="@color/warm" &lt;!-- undefined, too --&gt;
                 android:centerY="0.75"
-                android:endColor="@color/hot" // undefined, as well
+                android:endColor="@color/hot" &lt;!-- undefined, as well --&gt;
                 android:angle="90"
                 /&gt;
         &lt;/shape&gt;
@@ -1537,7 +1586,7 @@ public class ThermometerActivity extends ActionBarActivity {
 					</section>
 
 					<section>
-						Let's go to ThermometerBar activity, and add following lines:
+						Let's go to ThermometerActivity, and add following lines:
 						<pre><code class="language-java">
 import android.widget.ProgressBar;
 
@@ -1561,8 +1610,13 @@ protected void onCreate(Bundle savedInstanceState) {
 						<pre><code class="language-java">
 // in Thread's run() method
 
-double currentProgress;
-double progressStatus;
+@Override
+public void run(){
+	// ...
+	double currentProgress; // this will control the bar's progress
+	double progressStatus; // helper variable
+}
+
 						</code></pre>
 					</section>
 
@@ -1572,10 +1626,20 @@ double progressStatus;
 
 // inside while & try
 
-progressStatus = progress.getMax () - distance.getDistance();
-currentProgress = progress.getProgress();
-currentProgress = Math.ceil(0.9 * currentProgress + 0.1 * progressStatus);
-progress.setProgress((int)currentProgress);
+@Override
+public void run(){
+	// ...
+    while(showProximity) {
+		try {
+			// ...
+			progressStatus = progress.getMax() - distance.getDistance();
+			currentProgress = progress.getProgress();
+			currentProgress = Math.ceil(0.9 * currentProgress + 0.1 * progressStatus);
+			progress.setProgress((int)currentProgress);
+		}
+}
+
+
 
 						</code></pre>
 					</section>
@@ -1641,11 +1705,10 @@ public double getLogarithmicDistance(){
 						<li class="fragment">Set their ID to identify them later in Java</li>
 						<li class="fragment">Fill them with values "Hot", "&", "Cold"</li>
 						<li class="fragment">Set the color of "Hot" and "Cold" to red and blue respectively</li>
-						<li class="fragment">And change "&" color to gradient...</li>
 					</section>
 
 					<section>
-						<h2>Gradient color</h2>
+						<h2>Gradient color for &</h2>
 						In MainActivity.java:
 						<pre><code class="language-java">
 
@@ -1677,7 +1740,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
 					<section>
 						<h2>Add picture to main activity</h2>
-						<li class="fragment">Drag the button to the button, we'll style it in a minute</li>
+						<li class="fragment">Drag the button to the bottom, we'll style it in a minute</li>
 						<li class="fragment">In main_activity.xml Design mode, drag ImageView to phone's screen.</li>
 						<li class="fragment">Change its background property to the imported image.</li>
 					</section>
@@ -1787,12 +1850,21 @@ protected void onActivityResult(int requestCode, int resultCode, Intent intent){
 }
 						</code></pre>
 					</section>						
+
+					<section>
+						<h2>Change the app's icon</h2>
+						<span>Set icon property in AndroidManifest to <em>@drawable/hot_cold</em></span>
+					</section>
 				
 					<section>
-						Now our app is <em>beautiful</em>. We <em>love</em> her.
+						Now our app is <em>beautiful</em>. We <em>love</em> her.<br /><br />
+						<iframe width="853" height="480" src="https://www.youtube.com/embed/8ZcmTl_1ER8?rel=0" frameborder="0" allowfullscreen></iframe>
 					</section>	
 
+
 				</section>
+
+
 
 				<!-- Your own app -->
 				<section>
