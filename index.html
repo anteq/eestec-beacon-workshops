@@ -137,13 +137,71 @@
 					<section data-markdown>
 						## Android studio
 					</section>
+										<section>
+						<h3>Activity</h3>
+							<pre><code class="language-java">
+public class MainActivity extends Activity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+}							</code></pre>
+						</p>
+					</section>
+					<section>
+						<h3>Intent</h3>
+							<pre><code class="language-java">
+        Intent intent = new Intent(Activity_starting_other_activity, ActivityToBeStarted.class);
+        startActivity(intent);
+							</code></pre>
+							<pre><code class="language-java">
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent){
+        if(resultCode != RESULT_OK) {
+            finish(); //ends activity
+        } else {
+            // do something with the information retrieved
+        }
+
+    }
+							</code></pre>
+					</section>
+					<section>
+						<h3>Logger</h3>
+						<p class="fragment"><em>debug (Log.d)</em></p>
+						<p class="fragment">info (Log.i)</p>
+						<p class="fragment">error (Log.e)</p>
+						<p class="fragment">verbose (Log.v)</p>
+						<p class="fragment">warn (Log.w)</p>
+					</section>
 					<section>
 						<h2>Project Structure</h2>
 						<img src="img/Zrzut ekranu 2015-04-16 20.25.07.png"></img>
 					</section>
 					<section>
 						<h3>Gradle</h3>
-						<p class="fragment">gradle.build</p>
 						<pre><code class="language-java">
 android {
     compileSdkVersion 21
@@ -199,60 +257,6 @@ android {
 						  * Dimens <!-- .element: class="fragment" -->
 						
 					</section>
-					
-					<section>
-						<h3>Activity</h3>
-							<pre><code class="language-java">
-public class MainActivity extends Activity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-}							</code></pre>
-						</p>
-					</section>	
-					<section>
-							<h3>Intent</h3>
-							<pre><code class="language-java">
-        Intent intent = new Intent(Activity_starting_other_activity, ActivityToBeStarted.class);
-        startActivity(intent);
-							</code></pre>
-							<pre><code class="language-java">
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent){
-        if(resultCode != RESULT_OK) {
-            finish(); //ends activity
-        } else {
-            // do something with the information retrieved
-        }
-
-    }
-							</code></pre>
-						
-					</section>
-					
 					
 				</section>
 
