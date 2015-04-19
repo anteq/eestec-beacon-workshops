@@ -13,7 +13,7 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-
+		
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/moon.css" id="theme">
 
@@ -134,10 +134,7 @@
 					<section data-markdown>
 						## Introduction to Android
 					</section>
-					<section data-markdown>
-						## Android studio
-					</section>
-										<section>
+					<section>
 						<h3>Activity</h3>
 							<pre><code class="language-java">
 public class MainActivity extends Activity {
@@ -147,36 +144,17 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }							</code></pre>
 						</p>
 					</section>
 					<section>
 						<h3>Intent</h3>
-							<pre><code class="language-java">
+							<p class="fragment"><pre><code class="language-java">
         Intent intent = new Intent(Activity_starting_other_activity, ActivityToBeStarted.class);
         startActivity(intent);
-							</code></pre>
-							<pre><code class="language-java">
+							</code></pre></p>
+							<p class="fragment"><pre><code class="language-java">
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent){
         if(resultCode != RESULT_OK) {
@@ -186,7 +164,7 @@ public class MainActivity extends Activity {
         }
 
     }
-							</code></pre>
+							</code></pre></p>
 					</section>
 					<section>
 						<h3>Logger</h3>
@@ -195,6 +173,9 @@ public class MainActivity extends Activity {
 						<p class="fragment">error (Log.e)</p>
 						<p class="fragment">verbose (Log.v)</p>
 						<p class="fragment">warn (Log.w)</p>
+					</section>
+					<section data-markdown>
+						## Android studio
 					</section>
 					<section>
 						<h2>Project Structure</h2>
