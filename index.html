@@ -1636,30 +1636,162 @@ public double getLogarithmicDistance(){
 					</section>
 
 					<section>
-						<h2>Add picture to main activity</h2>
-						In main_activity.xml Design mode, drag ImageView to phone's screen.
-						Change its background property to new image
+						<h2>Add title</h2>
+						<li class="fragment">Add three text views</li>
+						<li class="fragment">Set their ID to identify them later in Java</li>
+						<li class="fragment">Fill them with values "Hot", "&", "Cold"</li>
+						<li class="fragment">Set the color of "Hot" and "Cold" to red and blue respectively</li>
+						<li class="fragment">And change "&" color to gradient...</li>
 					</section>
 
 					<section>
-						<h2>Add title</h2>
+						<h2>Gradient color</h2>
+						In MainActivity.java:
+						<pre><code class="language-java">
+
+// import Shader and LinearGradient
+
+public void setGradientText(TextView amp){
+    Shader textShader = new LinearGradient(0, 0, 0, amp.getPaint().getTextSize(),
+            new int[]{rgb(230, 92, 48), rgb(40, 140, 203)},
+            new float[]{0, 1}, Shader.TileMode.CLAMP);
+    amp.getPaint().setShader(textShader);
+}
+
+// invoke it in onCreate on our TextView
+						</code></pre>
+					</section>
+
+
+					<section>
+						<pre><code class="language-java">
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+	// ...
+
+	TextView amp = (TextView)findViewById(R.id.title_amp);
+    setGradientText(amp);
+}
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Add picture to main activity</h2>
+						<li class="fragment">Drag the button to the button, we'll style it in a minute</li>
+						<li class="fragment">In main_activity.xml Design mode, drag ImageView to phone's screen.</li>
+						<li class="fragment">Change its background property to the imported image.</li>
 					</section>
 
 					<section>
 						<h2>Style the button</h2>
+						<li class="fragment">Create new file res/drawable/button.xml</li>
+						<li class="fragment">Set button's background to @drawable/button</li>
+						<li class="fragment">Fill it with provided values:</li>
 					</section>
 
 					<section>
-						<h2>Style the text</h2>
+						<h2>Style the button</h2>
+						<pre><code class="language-markup">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;selector xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+	// here we'll create two items
+&lt;/selector&gt;
+						</code></pre>
 					</section>
 
 					<section>
-						<h2>Add background colors in </h2>
+						<h2>Style the button</h2>
+						<pre><code class="language-markup">
+// ...
+&lt;item android:state_pressed="true" &gt;
+    &lt;shape&gt;
+        &lt;gradient
+            android:startColor="@color/button_cool"
+            android:endColor="@color/button_cold"
+            android:angle="270" /&gt;
+        &lt;stroke
+            android:width="1dp"
+            android:color="@color/button_cold" /&gt;
+        &lt;corners
+            android:radius="3dp" /&gt;
+        &lt;padding
+            android:left="10dp"
+            android:top="10dp"
+            android:right="10dp"
+            android:bottom="10dp" /&gt;
+    &lt;/shape&gt;
+&lt;/item&gt;
+// ...
+						</code></pre>
 					</section>
 
 					<section>
-						Shutdown if user doesn't enable bluetooth
+						<h2>Style the button</h2>
+						<pre><code class="language-markup">
+// ...
+&lt;item&gt;
+        &lt;shape&gt;
+            &lt;gradient
+                android:startColor="@color/button_warm"
+                android:endColor="@color/button_hot"
+                android:angle="270" /&gt;
+            &lt;stroke
+                android:width="1dp"
+                android:color="@color/button_hot" /&gt;
+            &lt;corners
+                android:radius="3dp" /&gt;
+            &lt;padding
+                android:left="10dp"
+                android:top="10dp"
+                android:right="10dp"
+                android:bottom="10dp" /&gt;
+        &lt;/shape&gt;
+&lt;/item&gt;
+// ...
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Add colors to colors.xml</h2>
+						<pre><code class="language-markup">
+// ...
+&lt;color name="button_hot"&gt;#FFE62025&lt;/color&gt;
+&lt;color name="button_warm"&gt;#FFFECB68&lt;/color&gt;
+&lt;color name="button_cool"&gt;#FF63A3D8&lt;/color&gt;
+&lt;color name="button_cold"&gt;#FF0059A7&lt;/color&gt;
+						</code></pre>
+					</section>
+
+
+					<section>
+						<h2>Style the title's and button's text</h2>
+						<li>You can change e.g. textSize and textStyle</li>
+					</section>
+
+					<section>
+						<h2>Shutdown if user doesn't enable bluetooth</h2>
+						In MainActivity.java:
+						<pre><code class="language-java">
+@Override
+protected void onActivityResult(int requestCode, int resultCode, Intent intent){
+        if(requestCode != REQUEST_ENABLE_BT) {
+        	super.onActivityResult(requestCode, resultCode, intent);
+        }
+        if(resultCode != RESULT_OK) {
+            finish();
+        } else {
+            Context context = getApplicationContext();
+            Toast.makeText(context,"Bluetooth successfuly enabled", Toast.LENGTH_SHORT);
+        }
+    }
+}
+						</code></pre>
 					</section>						
+				
+					<section>
+						Now our app is <em>beautiful</em>. We <em>love</em> her.
+					</section>	
+
 				</section>
 
 				<!-- Your own app -->
