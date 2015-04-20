@@ -127,7 +127,45 @@
 						* Coding 101: "hot and cold" game <!-- .element: class="fragment" -->
 						* Build your own app! <!-- .element: class="fragment" -->
 					</script></section>
+
+					<!-- Four day agenda -->
+					<section>
+						<h2>Teams</h2>
+						<table>
+							<tr>
+								<th>Team A</th>
+								<th>Team B</th>
+								<th>Team C</th>
+								<th>Team D</th>
+							</tr>
+							<tr>
+								<td>Manesh</td>
+								<td>Virginia</td>
+								<td>Aleks</td>
+								<td>Kurts</td>
+							</tr>
+							<tr>
+								<td>Christian</td>
+								<td>Alexandru</td>
+								<td>Dragana</td>
+								<td>Munir</td>
+							</tr>
+							<tr>
+								<td>Gala</td>
+								<td>Emir</td>
+								<td>Apostolis</td>
+								<td>Celia</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>Milena</td>
+								<td></td>
+								<td>Darko</td>
+							</tr>
+						</table>
+					</section>
 				</section>
+
 
 				<!-- INTRO TO ANDROID-->
 				<section>
@@ -158,7 +196,8 @@ public class MainActivity extends Activity {
 						<h3>Intent</h3>
 							<li class="fragment"><pre><code class="language-java">
 Intent intent = new Intent(Activity_starting_other_activity, ActivityToBeStarted.class);
-startActivity(intent);
+startActivity(Intent intent);
+startActivityForResult(Intent intent, int requestCode);
 							</code></pre></li>
 							<li class="fragment"><pre><code class="language-java">
 @Override
@@ -212,6 +251,8 @@ android {
 &lt;?xml version="1.0" encoding="utf-8"?&gt;
 &lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.workshops.helloworld" &gt;
+    &lt;uses-permission
+    	 android:name="android.permission.SOME_PERMISSION" /&gt;
 
     &lt;application
         android:allowBackup="true"
@@ -245,7 +286,9 @@ android {
 						
 					</section>
 
-
+					<section>
+						<h2>Hello, world!</h2>
+					</section>
 					
 				</section>
 
@@ -498,6 +541,11 @@ android {
 						<img src="img/overview-1.jpg" class="screen" />
 					</section>
 
+					<section>
+						<h2>App's structure</h2>
+						<img src="img/structure.jpg" class="stretch" />
+					</section>
+
 					<!-- Run VMWare Player -->
 					<section data-markdown>
 						## Run VMWare Player
@@ -553,12 +601,6 @@ android {
 						That's how it should look like:
 						<img src="img/game-3.png" class="stretch"></img>
 					</section>
-					
-					<section>
-						<h2>App's structure</h2>
-						<img src="img/structure.jpg" class="stretch" />
-					</section>
-
 
 					<section>
 						<h2>Create ThermometerActivity</h2>
